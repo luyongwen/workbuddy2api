@@ -1,6 +1,7 @@
 services:
   admin:
-    build: .
+    image: "${IMAGE_NAME:-ghcr.io/luyongwen/workbuddy2api}:${IMAGE_TAG:-latest}"
+    pull_policy: always
     ports:
       - "${ADMIN_PORT:-8790}:8790"
     volumes:
@@ -34,7 +35,8 @@ services:
   # Optional standalone single-account converter. Admin already serves /v1/*.
   converter:
     profiles: ["standalone"]
-    build: .
+    image: "${IMAGE_NAME:-ghcr.io/luyongwen/workbuddy2api}:${IMAGE_TAG:-latest}"
+    pull_policy: always
     ports:
       - "8787:8787"
     volumes:
